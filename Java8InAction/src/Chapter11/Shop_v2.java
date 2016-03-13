@@ -1,14 +1,15 @@
 package Chapter11;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
-public class Shop {
+public class Shop_v2 {
 	private final String name;
     private final Random random;
 
-    public Shop(String name) {
+    public Shop_v2(String name) {
         this.name = name;
         random = new Random(name.charAt(0) * name.charAt(1) * name.charAt(2));
     }
@@ -21,6 +22,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 	}
+	
 
 	//1. 동기API
 	public double getPrice(String product){
@@ -57,10 +59,4 @@ public class Shop {
 		// 새로운 thread 생성해서 calculatePrice()계산하고 완료되면 CompletableFuture에 담아 리턴 
 		return CompletableFuture.supplyAsync(() -> calculatePrice(product) );
 	}
-
-
-	public String getName() {
-		return name;
-	}
-	
 }
